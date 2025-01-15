@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E Commerce Site</title>
+
+    <!-- Importing external css-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <header class="header-section">
+        <div class="nav container">
+            <div class="row">
+                <div class="logo-img col">
+                    <img src="{% static 'images/logo.png' %}" alt="Company Logo" height="70px" width="150px">
+                </div>
+                <div class="search-form col">
+                    <form action="">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button 
+                                type="submit" 
+                                style="background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center;"
+                            >
+                                <svg 
+                                    width="20" 
+                                    height="20" 
+                                    viewBox="0 0 17 18" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g fill="#2874F1" fill-rule="evenodd">
+                                        <path d="m11.618 9.897l4.225 4.212c.092.092.101.232.02.313l-1.465 1.46c-.081.081-.221.072-.314-.02l-4.216-4.203"></path>
+                                        <path d="m6.486 10.901c-2.42 0-4.381-1.956-4.381-4.368 0-2.413 1.961-4.369 4.381-4.369 2.42 0 4.381 1.956 4.381 4.369 0 2.413-1.961 4.368-4.381 4.368m0-10.835c-3.582 0-6.486 2.895-6.486 6.467 0 3.572 2.904 6.467 6.486 6.467 3.582 0 6.486-2.895 6.486-6.467 0-3.572-2.904-6.467-6.486-6.467"></path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <input 
+                                type="text" 
+                                name="search" 
+                                id="search" 
+                                placeholder="Search for products" 
+                                style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; flex: 1;"
+                            >
+                            
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="nav-options col">
+                    <div class="row">
+                        <div class="login-btn col">
+                            <a href="#" id="login"><img src="{% static 'images/person.png' %}" alt="login image">Login</a>
+                            <div class="dropdown-menu">
+                                <span>New User</span><a href="#" id="signup">Sign Up</a><hr>
+                                <a href="#">Orders</a>
+                                <a href="#">Wishlist</a>
+                            </div>
+                        </div>
+                        <div class="cart-btn col">
+                            <a href="#"><img src="{% static 'images/cart.png' %}" alt="">Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </header>
     {% block start %}
 
     {% endblock %}
