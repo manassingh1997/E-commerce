@@ -1,0 +1,153 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Pseudo-elements */
+::before,
+::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Grid system */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    align-items: center;
+    margin: -15px;
+}
+
+.col {
+    flex: 1;
+    padding: 15px;
+}
+
+
+/* Header section */
+.logo-img{
+    flex: 0.5;
+    align-items: center;
+}
+.search-form {
+    flex: 2;
+}
+
+/* login button */
+.nav-options {
+    position: relative;
+}
+.login-btn {
+    position: relative;
+    display: inline-block;
+    margin-right: -30px;
+}
+
+.login-btn #login{
+    text-decoration: none;
+    padding: 5px;
+    display: flex;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+.login-btn #login:hover{
+    background-color: #0c5ac0;
+    color: white;
+    border: 5px solid #0c5ac0;
+    border-radius: 5px;
+}
+#login img, .cart-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.dropdown-menu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%; /* Align below the link */
+    width: 80%;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.login-btn:hover .dropdown-menu {
+    display: block; /* Display on hover */
+}
+.dropdown-menu #signup, .dropdown-menu span {
+    display: inline-flex; 
+    align-items: center;  
+    margin-right: 10px;    
+}
+.dropdown-menu hr {
+    width: 100%;
+    margin-left: 0;
+}
+
+.dropdown-menu a{
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+
+.dropdown-menu a:hover{
+    background-color: #e7eaed;
+}
+
+
+.cart-btn a{
+    text-decoration: none;
+    padding: 5px;
+    display: flex;
+    color: black;
+    align-items: left;
+    justify-content: center;
+    width: 50%;
+}
+
+
+
+/* Responsive utilities */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+
+    .col {
+        flex: 100%;
+    }
+}
+
