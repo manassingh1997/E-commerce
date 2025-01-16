@@ -120,6 +120,97 @@ body {
     width: 50%;
 }
 
+/* login Registration Page */
+.login-form {
+    width: 50%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    box-shadow: 3px 3px 3px 3px #888888;
+}
+
+.basic-info {
+    flex: 0.8;
+    padding: 15px;
+    background-color: #1476c6;
+    height: 60vh;
+    margin: 0;
+}
+
+.basic-info h1{
+    color: white;
+}
+.basic-info p{
+    color: rgb(227, 230, 241);
+    font-size: 16px;
+    margin-top: 20px;
+}
+.login-form form{
+    flex: 1.2;
+    padding: 15px 0 15px 20px;
+    margin-left: 10px;
+}
+.login-form .log-reg-form input{
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    padding-left: 0;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.login-form .log-reg-form input:focus {
+    outline: none;
+}
+
+.login-form .log-reg-form button, .otp-form button{
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    padding-left: 0;
+    color: white;
+    background-color: #fb641b;
+    border: 2px solid #fb641b;
+    cursor: pointer;
+}
+
+/* OTP boxes */
+.otp-form p{
+    width: 90%;
+    margin-top: 40px;
+    text-align: center;
+}
+.otp-form a{
+    display: inline;
+    text-decoration: none;
+    color: #343ce1;
+    font-weight: 200;
+    
+}
+
+.login-form .otp-form .otp-container{
+    width: 50%;
+    margin: 20px auto 5px auto;
+    align-items: center;
+}
+.login-form .otp-form .otp-container .otp-box {
+    width: 10%;
+    border: none;
+    border-bottom: 2px solid black;
+}
+.login-form .otp-form .otp-container .otp-box:focus {
+    outline:none;
+}
+
+/* Ensuring the focus shifts automatically to the next input */
+.otp-box[type="text"] {
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+
 
 
 /* Responsive utilities */

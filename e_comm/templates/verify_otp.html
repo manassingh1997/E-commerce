@@ -1,0 +1,23 @@
+{% extends 'utils/base.html' %}
+
+{% block start %}
+<div class="login-form">
+    <div class="basic-info">
+        <h1>Login</h1>
+        <p>Get access to your Orders, Wishlist and Recommendations</p>
+    </div>
+    <form method="POST" class="otp-form">
+        {% csrf_token %}
+        <p>Please enter the otp sent to {{ phone_number }}. <a href="{% url 'register' %}">Change</a></p>
+        <div class="otp-container">
+            <input type="text" name="otp1" class="otp-box" maxlength="1" required>
+            <input type="text" name="otp2" class="otp-box" maxlength="1" required>
+            <input type="text" name="otp3" class="otp-box" maxlength="1" required>
+            <input type="text" name="otp4" class="otp-box" maxlength="1" required>
+            <input type="text" name="otp5" class="otp-box" maxlength="1" required>
+            <input type="text" name="otp6" class="otp-box" maxlength="1" required>
+        </div>
+        <button type="submit">Verify OTP</button>
+    </form>
+</div>
+{% endblock %}

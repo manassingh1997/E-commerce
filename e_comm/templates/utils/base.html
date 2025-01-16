@@ -50,9 +50,9 @@
                 <div class="nav-options col">
                     <div class="row">
                         <div class="login-btn col">
-                            <a href="#" id="login"><img src="{% static 'images/person.png' %}" alt="login image">Login</a>
+                            <a href="{% url 'login_page' %}" id="login"><img src="{% static 'images/person.png' %}" alt="login image">Login</a>
                             <div class="dropdown-menu">
-                                <span>New User</span><a href="#" id="signup">Sign Up</a><hr>
+                                <span>New User</span><a href="{% url 'register' %}" id="signup">Sign Up</a><hr>
                                 <a href="#">Orders</a>
                                 <a href="#">Wishlist</a>
                             </div>
@@ -68,5 +68,6 @@
     {% block start %}
 
     {% endblock %}
+    <script src="{% static 'javascript/script.js' %}"></script>
 </body>
 </html>
