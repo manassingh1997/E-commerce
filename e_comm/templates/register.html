@@ -8,7 +8,7 @@
     </div>
     <form method="POST" id="register-form" class="log-reg-form">
         {% csrf_token %}
-        <input type="text" name="phone_number" placeholder="Enter Phone Number" required>
+        <input type="email" name="email" placeholder="Enter email address" required>
         <button type="submit" id="register_btn">Request OTP</button>
     </form>
 </div>
