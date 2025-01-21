@@ -9,7 +9,11 @@
     <form method="POST" id="register-form" class="log-reg-form">
         {% csrf_token %}
         <input type="email" name="email" placeholder="Enter email address" required>
-        <button type="submit" id="register_btn">Request OTP</button>
+        <input type="password" name="password" id="password" placeholder="Enter Password" required>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+        <span id="password_match"></span>
+        {% include 'utils/messages.html' %}
+        <button type="submit" id="register_btn">Sign Up</button>
     </form>
 </div>
 {% endblock %}

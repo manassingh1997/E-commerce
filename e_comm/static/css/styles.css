@@ -211,6 +211,35 @@ body {
     font-size: 20px;
 }
 
+/* Styles for Django Messages */
+/*Login Form Messages*/
+.messages {
+    list-style-type: none;  /* Removes default list styling */
+    margin: 0 0 1rem;  /* Add some margin at the bottom, no top margin */
+    padding: 0;
+}
+
+.messages li {
+    width: 80%;
+    background-color: #ffcc00;  /* Background color for messages */
+    padding: 5px;
+    border-radius: 2px;  /* Rounded corners for a softer look */
+    margin-bottom: 5px;  /* Space between messages */
+    color: #333;  /* Text color */
+    font-weight: bold;  /* Optional: makes the message text bold */
+}
+
+/* Optional: Add different styles based on message tags (e.g., error or success messages) */
+.messages .error {
+    background-color: #ff4d4d; /* Red for error messages */
+    color: white;
+}
+
+.messages .success {
+    background-color: #4caf50; /* Green for success messages */
+    color: white;
+}
+
 
 
 /* Responsive utilities */
@@ -241,4 +270,5 @@ body {
         flex: 100%;
     }
 }
+
 

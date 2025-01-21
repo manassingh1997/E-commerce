@@ -14,5 +14,20 @@ document.querySelectorAll('.otp-box').forEach((box, index, boxes) => {
     });
 });
 
+document.getElementById('confirm_password').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const confirm_pass = document.getElementById('confirm_password').value;
+    const span = document.getElementById('password_match');
+    console.log(password,confirm_pass)
+    if (password !== confirm_pass) {
+        span.style.display = 'block';
+        span.innerText = "Password and confirm password do not match"
+        span.style.color = 'red';
+    } else {
+        span.style.display = 'block';
+        span.innerText = "Password and confirm password match";
+        span.style.color = 'green';
+    }
 
+})
 

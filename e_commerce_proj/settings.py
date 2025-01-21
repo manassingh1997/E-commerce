@@ -129,6 +129,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'login_page'
+
 from dotenv import load_dotenv
 load_dotenv()
 

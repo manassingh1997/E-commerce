@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E Commerce Site</title>
@@ -52,9 +53,15 @@
                         <div class="login-btn col">
                             <a href="{% url 'login_page' %}" id="login"><img src="{% static 'images/person.png' %}" alt="login image">Login</a>
                             <div class="dropdown-menu">
+                                {% if not user.is_authenticated %}
                                 <span>New User</span><a href="{% url 'register' %}" id="signup">Sign Up</a><hr>
+                                {% endif %}
+                                <a href="#">My Profile</a>
                                 <a href="#">Orders</a>
                                 <a href="#">Wishlist</a>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'logout_page' %}">Logout</a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="cart-btn col">

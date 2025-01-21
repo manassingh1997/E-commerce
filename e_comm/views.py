@@ -1,66 +1,87 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login 
+from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser
-from .utils import *
 from django.contrib import messages
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 def register(request):
     if request.method == 'POST':
         email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
 
+        user = CustomUser.objects.filter(email=email)
 
-        user = CustomUser.objects.filter(email = email)
-
+        #If user exists alreadey then throw a warning and return to same page
         if user.exists():
-            messages.warning(request,'User exists Please Login')
-            return redirect('login_page')
+           messages.warning(request,"Account exists with Email")
+           return redirect('/register/')
+
+        if password != confirm_password:
+            messages.warning(request,'Password and confirm password do not match')
+            return redirect('/register/')
         
-        user = CustomUser.objects.create_user(username=email,email = email)
+        try: 
+           validate_password(password)
+        except ValidationError as e:
+            for error in e:
+              messages.error(request,error)
+            return redirect('/register/')
         
-        mobile_otp = generate_otp()
-        user.mobile_otp = mobile_otp
-        email_otp = generate_otp()
-        user.email_otp = email_otp
+
+        user = CustomUser.objects.create(
+           email = email,
+           password = password,
+           username = email,
+        )
+
+        user.set_password(password)
         user.save()
+        user_instance = CustomUser.objects.first()
+        user = authenticate(username = user_instance.username, password = password)
 
-        send_email(email_otp,email)
-        #print(f"Mobile OTP {mobile_otp}")
-        print(f"Email OTP {email_otp}")
-        
+        if user:
+           login(request,user)
+           return redirect('index')
 
-
-        request.session['email'] = email
-        return redirect('verify_otp', user_id = user.id)
+        return redirect('index')
     
     return render(request,'register.html')
 
 
-def verify_otp(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    email = request.session.get('email')
-    if request.method == 'POST':
-        otp1 = request.POST.get('otp1')
-        otp2 = request.POST.get('otp2')
-        otp3 = request.POST.get('otp3')
-        otp4 = request.POST.get('otp4')
-        otp5 = request.POST.get('otp5')
-        otp6 = request.POST.get('otp6')
-        email_otp = otp1 + otp2 + otp3 + otp4 + otp5 + otp6
-        
-        if verification(email_otp, user.email_otp):
-            user.is_email_verified = True
-            user.email_otp = None
-            user.save()
-            login(request,user)
-            return redirect('index')
-        else:
-            return render(request, 'verify_otp.html', {'error':'Invalid OTP','email':email})
-        
-    return render(request, 'verify_otp.html')
-
-def index(request):
-    return render(request,'index.html')
-
 
 def login_page(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = CustomUser.objects.filter(email = email)
+
+        if not user.exists():
+           messages.warning(request, "User Does Not Exists Please Sign Up")
+           return redirect('login_page')
+        
+        user_instance = CustomUser.objects.first()
+        user = authenticate(username = user_instance.username, password = password)
+        if user:
+           login(request,user)
+           return redirect('index')
+        
+        messages.warning(request, 'Invalid Credentials')
+        return redirect('login_page')
+    
     return render(request,'login.html')
+    
+        
+
+    
+
+def logout_page(request):
+    logout(request)
+    return redirect('index')
+
+def index(request):
+    user = request.user
+
+    return render(request,'index.html',{'user':user})
